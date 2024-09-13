@@ -127,7 +127,7 @@ def _reduce_vars_xgb(x, y, metric, this_round, cutoff, n_iterations, delta, sile
         if not silent:
             print("Round: ", this_round, " iteration: ", i)
 
-    df['Mean'] = df.mean(axis=1)
+    df['Mean'] = df.drop(columns=['feature']).mean(axis=1)
     #Split them back out
     real_vars = df[~df['feature'].isin(shadow_names)]
     shadow_vars = df[df['feature'].isin(shadow_names)]
